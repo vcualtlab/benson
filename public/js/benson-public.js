@@ -19,6 +19,19 @@ if ( angular_filter ) { ngModules.push(angular_filter) };
         $scope.error = 'Could not fetch data because "' + response + '"';
       };
 
+
+      $scope.dateFormat = function( date ){
+
+        var re = /(\d{1,4}\/)+(\d{4})/g;
+
+        var found = date.match(re);
+
+        splitDate = found[0].split("/");
+        
+        return Date.UTC( splitDate[2],splitDate[0],splitDate[1] );
+      }
+
+
       wpjson.getData().then(onDataComplete, onError);
 
       $scope.spinner = true;
